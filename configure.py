@@ -25,7 +25,7 @@ command = " ".join(
      os.path.join(sip_files_dir, "globalshortcutmod.sip")]
     )
 
-print command
+print(command)
 os.system(command)
 
 # Create the Makefile.

@@ -13,7 +13,7 @@ SHORTCUT = "Alt+Ctrl+S" #Ctrl maps to Command on Mac OS X
 QUIT_SHORTCUT = "Alt+Ctrl+F" #again, Ctrl maps to Command on Mac OS X
 
 def activated():
-    print "Shortcut Activated!"
+    print("Shortcut Activated!")
 
 def finito():
     app.quit()
