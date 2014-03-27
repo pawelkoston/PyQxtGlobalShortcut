@@ -1,6 +1,3 @@
-%ModuleCode
-#include "qxtglobalshortcut.h"
-%End
 
 class QxtGlobalShortcut : QObject
 {

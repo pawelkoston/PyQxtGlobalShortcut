@@ -1,4 +1,4 @@
-%Module pygs 0
+%Module pygs
 
 %Import QtCore/QtCoremod.sip
 %Import QtGui/QtGuimod.sip
