@@ -1,0 +1,15 @@
+
+# Python
+__pycache__
+*.py[cod]
+
+# IntelliJ IDEA
+/.idea/
+/*.iml
+
+# Build Output
+/qxtglobalshortcut/
+!/qxtglobalshortcut/qxtglobalshortcut.pro
+/pygs/
+!/pygs/sip/
+!/pygs/configure.py
