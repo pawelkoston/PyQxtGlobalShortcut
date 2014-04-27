@@ -4,11 +4,13 @@ h1. pygs
 
 h2. Overview
 
-pygs provides cross-platform global hotkey / shortcuts for python using PyQt4.
+pygs provides cross-platform global hotkey / shortcuts for python using PyQt.
 
 pygs is a wrapper for "libqxt's":http://www.libqxt.org/ "QxtGlobalShortcut":http://doc.libqxt.org/tip/qxtglobalshortcut.html.
 
-My aim is to provide cross-platform support for global hotkeys (shortcuts) in python. Ideally I would like to remove the PyQt4 and libqxt dependency but that remains a (distant) future goal. I believe it is definitely possible and potentially quite useful though.
+My aim is to provide cross-platform support for global hotkeys (shortcuts) in python. Ideally I would like to remove the PyQt and libqxt dependency but that remains a (distant) future goal. I believe it is definitely possible and potentially quite useful though.
+
+This fork support PyQt4/PyQt5 on Python 2.x/3.x.
 
 
 h2. Installation
@@ -16,31 +18,15 @@ h2. Installation
 *Requirements*
 ~sufficient not necessary~
 
-# Python 2.6
+# Python
 # Qt
 # SIP
-# PyQt4
+# PyQt
 
-*Mac and Linux*
-
-To Install
-<code>
-make
-</code>
-<br/>
-<code>
-make install
-</code>
-
-*Windows*
 
 To Install
 <code>
-make -f Makefile.windows
-</code>
-<br/>
-<code>
-make -f Makefile.windows install
+setup.py install
 </code>
 
 
@@ -62,11 +48,11 @@ h2. Acknowledgements
 
 pygs uses
 
-* "Nokia's":http://www.nokia.com "Qt":http://qt.nokia.com/
+* "Digia's":http://www.digia.com/ "Qt":http://qt-project.org/
 
 * "Riverbank Computing Limited's":http://www.riverbankcomputing.co.uk "SIP":http://www.riverbankcomputing.co.uk/software/sip/intro
 
-* "Riverbank Computing Limited's":http://www.riverbankcomputing.co.uk" PyQt4":http://www.riverbankcomputing.co.uk/software/pyqt/intro
+* "Riverbank Computing Limited's":http://www.riverbankcomputing.co.uk" PyQt":http://www.riverbankcomputing.co.uk/software/pyqt/intro
 
 * "libqxt":http://www.libqxt.org/
 
@@ -75,10 +61,11 @@ Thanks!
 
 h2. License
 
-pygs  - Python bindings to libqxt's QxtGlobalShortcut using SIP and PyQt4. In other words, global hotkeys for PyQt4
-.
+pygs  - Python bindings to libqxt's QxtGlobalShortcut using SIP and PyQt. In other words, global hotkeys for PyQt.
+
 Copyright (C) 2010  J. Matt Peterson
+Copyright (C) 2014  Asvel
 
-You may use pygs under the terms of the General Public License (GPL) Version 2 or you may contact the author for permission or a commercial license. The commercial license option is specifically provided for those who are unable or unwilling to use the GPL.
+You may use pygs under the terms of the General Public License (GPL) Version 3 or you may contact the author for permission or a commercial license. The commercial license option is specifically provided for those who are unable or unwilling to use the GPL.
 
-"http://www.gnu.org/licenses/gpl-2.0.txt":http://www.gnu.org/licenses/gpl-2.0.txt
+"http://www.gnu.org/licenses/gpl-3.0.txt":http://www.gnu.org/licenses/gpl-3.0.txt
