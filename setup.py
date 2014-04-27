@@ -59,7 +59,7 @@ class build_ext_with_sip(build_ext):
 
         # copy libs to ext dir
         ext_dir = os.path.dirname(self.get_ext_fullpath("_"))
-        os.makedirs(ext_dir)
+        os.makedirs(ext_dir, exist_ok=True)
         for filename in os.listdir(self.build_temp):
             if os.path.splitext(filename)[1].lower() in NATIVE_EXTENSIONS:
                 shutil.copy(os.path.join(self.build_temp, filename), ext_dir)
