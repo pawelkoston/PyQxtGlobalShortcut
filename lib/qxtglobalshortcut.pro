@@ -2,8 +2,6 @@
 TEMPLATE = lib
 TARGET = QxtGlobalShortcut
 
-DESTDIR = ./
-
 CONFIG += qt release
 QT = core gui
 

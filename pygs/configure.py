@@ -52,11 +52,12 @@ except ImportError:
 
             sipconfig.Configuration.__init__(self, [cfg])
 
-os.chdir(os.path.dirname(__file__))
-
 config = Configuration()
 
-# The name of the SIP build file.
+here = os.path.abspath(os.path.dirname(__file__))
+
+sip_path = os.path.join(here, "sip/pygsmod.sip")
+
 build_file = "pygs.sbf"
 
 # Run SIP to generate the code.
@@ -66,13 +67,12 @@ command = [
     "-b", build_file,
     "-I", config.pyqt_sip_dir,
     "-e"
-] + config.pyqt_sip_flags.split() + ["sip/pygsmod.sip"]
+] + config.pyqt_sip_flags.split() + [sip_path]
 subprocess.check_call(command)
 
 # Create the Makefile.
 makefile = sipconfig.SIPModuleMakefile(config, build_file, qt=["QtCore", "QtGui"])
-makefile.extra_include_dirs.append(os.path.abspath("../libqxt/src/core"))
-makefile.extra_include_dirs.append(os.path.abspath("../libqxt/src/widgets"))
-makefile.extra_lib_dirs.append(os.path.abspath("../qxtglobalshortcut"))
+makefile.extra_include_dirs.append(os.path.join(here, "../libqxt/src/core"))
+makefile.extra_include_dirs.append(os.path.join(here, "../libqxt/src/widgets"))
 makefile.extra_libs.append("QxtGlobalShortcut")
 makefile.generate()
