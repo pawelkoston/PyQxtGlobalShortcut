@@ -1,10 +1,27 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import sys
 import os
 import subprocess
+from distutils.dep_util import newer_group
 
 import sipconfig
+
+
+here = os.path.abspath(os.path.dirname(__file__))
+
+build_file = "pygs.sbf"
+
+
+# exit if up-to-date
+sources = []
+for root, dirs, files in os.walk(here):
+    sources += [os.path.join(root, file) for file in files]
+if not newer_group(sources, build_file):
+    print("pygs is up-to-date, skip configure")
+    sys.exit(0)
+
 
 try:
     from PyQt4.pyqtconfig import Configuration
@@ -54,11 +71,7 @@ except ImportError:
 
 config = Configuration()
 
-here = os.path.abspath(os.path.dirname(__file__))
-
 sip_path = os.path.join(here, "sip/pygsmod.sip")
-
-build_file = "pygs.sbf"
 
 # Run SIP to generate the code.
 command = [
