@@ -10,7 +10,7 @@ pygs is a wrapper for "libqxt's":http://www.libqxt.org/ "QxtGlobalShortcut":http
 
 My aim is to provide cross-platform support for global hotkeys (shortcuts) in python. Ideally I would like to remove the PyQt and libqxt dependency but that remains a (distant) future goal. I believe it is definitely possible and potentially quite useful though.
 
-This fork support PyQt4/PyQt5 on Python 2.x/3.x.
+This fork support PyQt4 / PyQt5 on Python 2.&#120; / 3.&#120;.
 
 
 h2. Installation
@@ -25,23 +25,20 @@ h2. Installation
 
 
 To Install
-<code>
-setup.py install
-</code>
+
+@setup.py install@
 
 
 h2. Usage
 
 *See examples/simple.py*
 
-<code>
-python simple.py
-</code>
+@python simple.py@
 
-ctrl+alt+s - activate shortcut
-ctrl+alt+f - quit application
+@Ctrl+Alt+S@ - activate shortcut
+@Ctrl+Alt+F@ - quit application
 
-NOTE: ctrl maps to COMMAND on macs!!!! Yeah this is crazy confusing. But it's Qt not me :)
+NOTE: Ctrl maps to COMMAND on macs!!!! Yeah this is crazy confusing. But it's Qt not me :)
 
 
 h2. Acknowledgements

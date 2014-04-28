@@ -11,8 +11,8 @@ except ImportError:
 from pygs import QxtGlobalShortcut
 
 
-SHORTCUT_SHOW = "Alt+Ctrl+S"  # Ctrl maps to Command on Mac OS X
-SHORTCUT_EXIT = "Alt+Ctrl+F"  # again, Ctrl maps to Command on Mac OS X
+SHORTCUT_SHOW = "Ctrl+Alt+S"  # Ctrl maps to Command on Mac OS X
+SHORTCUT_EXIT = "Ctrl+Alt+F"  # again, Ctrl maps to Command on Mac OS X
 
 
 def show_activated():
