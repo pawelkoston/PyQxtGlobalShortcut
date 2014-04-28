@@ -89,7 +89,7 @@ with codecs.open("DESCRIPTION.rst", encoding="utf-8") as f:
 
 setup(
     name="pygs",
-    version="0.2.0b1",
+    version="0.2.1b1",
     description="Python bindings to libqxt's QxtGlobalShortcut",
     long_description=long_description,
     url="https://github.com/Asvel/pygs",
