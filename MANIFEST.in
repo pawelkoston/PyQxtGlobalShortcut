@@ -1,0 +1,7 @@
+recursive-include examples *
+recursive-include lib *
+recursive-include libqxt *
+recursive-include pygs *
+include DESCRIPTION.rst
+include LICENSE.txt
+include README.textile
