@@ -7,8 +7,8 @@ class QxtGlobalShortcut : QObject
 %End
 
 public:
-    explicit QxtGlobalShortcut(QObject* parent /TransferBack/ = 0);
-    explicit QxtGlobalShortcut(const QKeySequence& shortcut, QObject* parent /TransferBack/ = 0);
+    explicit QxtGlobalShortcut(QObject* parent /TransferThis/ = 0);
+    explicit QxtGlobalShortcut(const QKeySequence& shortcut, QObject* parent /TransferThis/ = 0);
     virtual ~QxtGlobalShortcut();
     QKeySequence shortcut() const;
     bool setShortcut(const QKeySequence& shortcut);
