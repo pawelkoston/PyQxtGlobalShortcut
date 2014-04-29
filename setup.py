@@ -88,7 +88,7 @@ with codecs.open("README.textile", encoding="utf-8") as f:
     long_description = f.read()
 
 setup(
-    name="pygs",
+    name="PyGlobalShortcut",
     version="0.2.1b1",
     description="Python bindings to libqxt's QxtGlobalShortcut",
     long_description=long_description,
