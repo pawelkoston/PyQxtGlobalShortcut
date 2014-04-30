@@ -84,7 +84,7 @@ class build_ext_with_sip(build_ext):
             super(build_ext_with_sip, self).build_libraries(ext)
 
 
-with codecs.open("README.textile", encoding="utf-8") as f:
+with codecs.open("README.rst", encoding="utf-8") as f:
     long_description = f.read()
 
 setup(

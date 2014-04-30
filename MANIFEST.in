@@ -3,4 +3,4 @@ recursive-include lib *
 recursive-include libqxt *
 recursive-include pygs *
 include LICENSE.txt
-include README.textile
+include README.rst
