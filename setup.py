@@ -14,6 +14,11 @@ from setuptools import setup, Extension
 from setuptools.command.bdist_egg import NATIVE_EXTENSIONS
 
 
+def makedirs(name):
+    if not os.path.exists(name):
+        os.makedirs(name)
+
+
 def try_initialize_compiler(compiler):
     if not getattr(compiler, 'initialized', True) and hasattr(compiler, 'initialize'):
         compiler.initialize()
@@ -37,7 +42,7 @@ class build_clib_with_qmake(build_clib):
 
                 # init
                 try_initialize_compiler(self.compiler)
-                os.makedirs(self.build_temp, exist_ok=True)
+                makedirs(self.build_temp)
 
                 # qmake
                 sources = os.path.abspath(build_info['sources'][0])
@@ -49,17 +54,17 @@ class build_clib_with_qmake(build_clib):
 
             else:
                 clib_not_qmake.append((lib_name, build_info))
-        super(build_clib_with_qmake, self).build_libraries(clib_not_qmake)
+                build_clib.build_libraries(self, clib_not_qmake)
 
 
 class build_ext_with_sip(build_ext):
 
     def build_extensions(self):
-        super(build_ext_with_sip, self).build_extensions()
+        build_ext.build_extensions(self)
 
         # copy libs to ext dir
         ext_dir = os.path.dirname(self.get_ext_fullpath("_"))
-        os.makedirs(ext_dir, exist_ok=True)
+        makedirs(ext_dir)
         for filename in os.listdir(self.build_temp):
             if os.path.splitext(filename)[1].lower() in NATIVE_EXTENSIONS:
                 shutil.copy(os.path.join(self.build_temp, filename), ext_dir)
@@ -70,7 +75,7 @@ class build_ext_with_sip(build_ext):
 
             # init
             try_initialize_compiler(self.compiler)
-            os.makedirs(self.build_temp, exist_ok=True)
+            makedirs(self.build_temp)
 
             # configure
             config = os.path.abspath(ext.sources[0])
@@ -81,7 +86,7 @@ class build_ext_with_sip(build_ext):
             check_call([make], cwd=self.build_temp)
 
         else:
-            super(build_ext_with_sip, self).build_libraries(ext)
+            build_ext.build_libraries(self, ext)
 
 
 with codecs.open("README.rst", encoding="utf-8") as f:
