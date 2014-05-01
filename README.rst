@@ -20,16 +20,43 @@ This fork support PyQt4 / PyQt5 on Python 2.x / 3.x.
 Installation
 ------------
 
-**Requirements** (sufficient not necessary)
+Requirements
+~~~~~~~~~~~~
 
-* Python
-* Qt
-* SIP
-* PyQt
+Minimal for working:
 
-To Install
+* `PyQt <http://www.riverbankcomputing.co.uk/software/pyqt/intro>`_
+
+For building from source:
+
+* `Qt <http://qt-project.org/>`_
+* `SIP <http://www.riverbankcomputing.co.uk/software/sip/intro>`_
+
+*None of them could be installed automatic, please download and install them manually.*
+
+Install from Source Code
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+``pip install PyGlobalShortcut``
+
+or
 
 ``setup.py install``
+
+Install from Binary Package
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**WARNING**: *Binary package probably only work with corresponding PyQt binary package.*
+
+Binary package can be found at `release page <https://github.com/Asvel/pygs/releases>`_, please download an unzip it.
+
+There are some directories named in form '``<PyQt binary package name>-<first 6 characters of PyQt binary package sha1>``' in it, **open the one corresponding to the PyQt binary package installed**, if that directory does not exist or your PyQt is not installed from official binary package, **please install pygs from source code.**
+
+There is a `Wheel <https://pypi.python.org/pypi/wheel>`_ in it, just install it by:
+
+``pip install <filepath.whl>``
+
+Again, *binary package probably only work with corresponding PyQt binary package*, please use it carefully.
 
 
 Usage
