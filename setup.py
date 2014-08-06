@@ -5,6 +5,7 @@ import sys
 import os
 import shutil
 import subprocess
+from errno import ENOENT
 from distutils import log
 from distutils.command.build_clib import build_clib
 from distutils.command.build_ext import build_ext
@@ -27,8 +28,9 @@ def try_initialize_compiler(compiler):
 def check_call(command, cwd):
     try:
         subprocess.check_call(command, cwd=cwd)
-    except FileNotFoundError as ex:
-        ex.strerror = "{0} not found, please make sure {0} is in PATH".format(command[0])
+    except OSError as ex:
+        if ex.errno == ENOENT:
+            ex.strerror = "{0} not found, please make sure {0} is in PATH".format(command[0])
         raise ex
 
 
