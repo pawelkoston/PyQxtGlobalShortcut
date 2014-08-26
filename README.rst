@@ -50,9 +50,9 @@ Install from Binary Package
 
 Binary package can be found at `release page <https://github.com/Asvel/pygs/releases>`_, please download an unzip it.
 
-There are some directories named in form '``<PyQt binary package name>-<first 6 characters of PyQt binary package sha1>``' in it, **open the one corresponding to the PyQt binary package installed**, if that directory does not exist or your PyQt is not installed from official binary package, **please install pygs from source code.**
+The file name of binary packages contains name of corresponding PyQt binary package (behind '``-for-``'), if that package does not exist or your PyQt is not installed from official binary package, **please install pygs from source code.**
 
-There is a `Wheel <https://pypi.python.org/pypi/wheel>`_ in it, just install it by:
+There is a `Wheel <https://pypi.python.org/pypi/wheel>`_ in it, install it by:
 
 ``pip install <filepath.whl>``
 
