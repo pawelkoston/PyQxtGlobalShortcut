@@ -56,7 +56,7 @@ class build_clib_with_qmake(build_clib):
 
             else:
                 clib_not_qmake.append((lib_name, build_info))
-                build_clib.build_libraries(self, clib_not_qmake)
+        build_clib.build_libraries(self, clib_not_qmake)
 
 
 class build_ext_with_sip(build_ext):
