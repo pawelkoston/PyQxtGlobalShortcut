@@ -33,6 +33,7 @@ For building from source:
 * `SIP <http://www.riverbankcomputing.co.uk/software/sip/intro>`_
 
 *None of them could be installed automatic, please download and install them manually.*
+*If you install them from a package manager, please also install development packages (if exist)*
 
 Install from Source Code
 ~~~~~~~~~~~~~~~~~~~~~~~~
