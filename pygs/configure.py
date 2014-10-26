@@ -31,12 +31,14 @@ except ImportError:
 
     class Configuration(sipconfig.Configuration):
         def __init__(self):
-            try:
-                import PyQt5 as PyQt
-                from PyQt5 import QtCore
-            except ImportError:
+            if os.environ['QT_API'] == 'pyqt4':
                 import PyQt4 as PyQt
                 from PyQt4 import QtCore
+            else:
+                import PyQt5 as PyQt
+                from PyQt5 import QtCore
+
+            print('building for %s' % PyQt.__name__)
 
             qmake_props = subprocess.check_output(["qmake", "-query"], universal_newlines=True)
             qmake_props = dict(x.split(":", 1) for x in qmake_props.splitlines())
@@ -50,6 +52,10 @@ except ImportError:
             cfg['pyqt_mod_dir'] = cfg['pyqt_bin_dir']
             cfg['pyqt_modules'] = "QtCore QtGui"  # FIXME
             cfg['pyqt_sip_dir'] = os.path.join(cfg['pyqt_mod_dir'], "sip", PyQt.__name__)
+            if not os.path.exists(os.path.join(cfg['pyqt_sip_dir'],
+                    'QtCoremod.sip')):
+                cfg['pyqt_sip_dir'] = os.path.join(
+                        sys.prefix, 'share', 'sip', PyQt.__name__)
             cfg['pyqt_sip_flags'] = QtCore.PYQT_CONFIGURATION['sip_flags']
             cfg['pyqt_version'] = QtCore.PYQT_VERSION
             cfg['pyqt_version_str'] = QtCore.PYQT_VERSION_STR

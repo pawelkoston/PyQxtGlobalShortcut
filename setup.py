@@ -15,6 +15,9 @@ from setuptools import setup, Extension
 from setuptools.command.bdist_egg import NATIVE_EXTENSIONS
 
 
+os.environ.setdefault('QT_API', 'pyqt5')
+
+
 def makedirs(name):
     if not os.path.exists(name):
         os.makedirs(name)
