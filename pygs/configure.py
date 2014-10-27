@@ -4,6 +4,7 @@
 import sys
 import os
 import subprocess
+from importlib import import_module
 from distutils.dep_util import newer_group
 
 import sipconfig
@@ -23,7 +24,10 @@ if not newer_group(sources, build_file):
     sys.exit(0)
 
 
+qt_api = os.environ.get('QT_API', '').lower()
 try:
+    if qt_api and qt_api != 'pyqt4':
+        raise ImportError()
     from PyQt4.pyqtconfig import Configuration
 except ImportError:
     # This global variable will be resolved by sipconfig in a strange way
@@ -31,14 +35,17 @@ except ImportError:
 
     class Configuration(sipconfig.Configuration):
         def __init__(self):
-            if os.environ['QT_API'] == 'pyqt4':
+            if qt_api == 'pyqt4':
                 import PyQt4 as PyQt
-                from PyQt4 import QtCore
-            else:
+            elif qt_api == 'pyqt5':
                 import PyQt5 as PyQt
-                from PyQt5 import QtCore
-
-            print('building for %s' % PyQt.__name__)
+            else:
+                try:
+                    import PyQt5 as PyQt
+                except ImportError:
+                    import PyQt4 as PyQt
+            print("building for {}".format(PyQt.__name__))
+            QtCore = import_module('.'.join([PyQt.__name__, 'QtCore']))
 
             qmake_props = subprocess.check_output(["qmake", "-query"], universal_newlines=True)
             qmake_props = dict(x.split(":", 1) for x in qmake_props.splitlines())

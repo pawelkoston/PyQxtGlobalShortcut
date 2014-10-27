@@ -13,6 +13,5 @@ __pycache__
 /pygs/
 !/pygs/sip/
 !/pygs/configure.py
-
 /build/
 *.egg-info

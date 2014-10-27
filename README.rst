@@ -45,6 +45,8 @@ or
 
 ``setup.py install``
 
+(Target Qt binding version can be specified by environment variable ``QT_APT``, valid values is ``PyQt4`` or ``PyQt5``)
+
 Install from Binary Package
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
