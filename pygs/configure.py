@@ -24,9 +24,9 @@ if not newer_group(sources, build_file):
     sys.exit(0)
 
 
-qt_api = os.environ.get('QT_API', '').lower()
+qt_api = os.environ.get('QT_SELECT', '').lower()
 try:
-    if qt_api and qt_api != 'pyqt4':
+    if qt_api and qt_api != '4':
         raise ImportError()
     from PyQt4.pyqtconfig import Configuration
 except ImportError:
@@ -35,9 +35,9 @@ except ImportError:
 
     class Configuration(sipconfig.Configuration):
         def __init__(self):
-            if qt_api == 'pyqt4':
+            if qt_api == '4':
                 import PyQt4 as PyQt
-            elif qt_api == 'pyqt5':
+            elif qt_api == '5':
                 import PyQt5 as PyQt
             else:
                 try:

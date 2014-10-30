@@ -45,7 +45,8 @@ or
 
 ``setup.py install``
 
-(Target Qt binding version can be specified by environment variable ``QT_APT``, valid values is ``PyQt4`` or ``PyQt5``.)
+(Target Qt binding version can be specified by environment variable
+``QT_SELECT``, valid values are ``4`` or ``5``.)
 
 Install from Binary Package
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -103,3 +104,34 @@ pygs  - Python bindings to libqxt's QxtGlobalShortcut using SIP and PyQt. In oth
 You may use pygs under the terms of the General Public License (GPL) Version 3 or you may contact the author for permission or a commercial license. The commercial license option is specifically provided for those who are unable or unwilling to use the GPL.
 
 http://www.gnu.org/licenses/gpl-3.0.txt
+
+Testing
+-------
+
+There is a minimal test suite that check the compilation process for various
+environments and ensure QxtGlobalShortcut can be properly imported and used.
+
+To run the tests, you must first install tox::
+
+    $ pip install tox
+
+
+Then you can run the tests by running the following command::
+
+    $ tox
+
+To run the tests against a specific environment, use the -e option. E.g. to run
+tests with python 2.7 and pyqt4, you would run::
+
+    $ tox -e py27-pyqt4
+
+Here is the list of available test environments:
+
+- py27-pyqt4
+- py27-pyqt5
+- py32-pyqt4
+- py32-pyqt5
+- py33-pyqt4
+- py33-pyqt5
+- py34-pyqt4
+- py34-pyqt5
