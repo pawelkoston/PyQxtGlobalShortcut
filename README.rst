@@ -8,6 +8,18 @@ pygs
 Overview
 --------
 
+.. image:: http://img.shields.io/pypi/v/PyGlobalShortcut.png
+   :target: https://pypi.python.org/pypi/PyGlobalShortcut
+   :alt: Latest PyPI version
+
+.. image:: http://img.shields.io/pypi/dm/PyGlobalShortcut.png
+   :target: https://pypi.python.org/pypi/PyGlobalShortcut/
+   :alt: Number of PyPI downloads
+
+.. image:: https://travis-ci.org/Asvel/pygs.svg?branch=master
+   :target: https://travis-ci.org/Asvel/pygs                  
+   :alt: Travis-CI build status    
+
 pygs provides cross-platform global hotkey / shortcuts for python using PyQt.
 
 pygs is a wrapper for `libqxt <http://www.libqxt.org/>`_'s `QxtGlobalShortcut <http://doc.libqxt.org/tip/qxtglobalshortcut.html>`_.
