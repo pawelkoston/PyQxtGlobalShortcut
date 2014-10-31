@@ -14,13 +14,16 @@ VPATH += $$INCLUDEPATH
 HEADERS += qxtglobalshortcut.h
 SOURCES += qxtglobal.cpp qxtglobalshortcut.cpp
 
-unix:!macx {
+unix: {
 CONFIG += static
+greaterThan(QT_MAJOR_VERSION, 4): QT += gui-private
+}
+
+unix:!macx {
 SOURCES += x11/qxtglobalshortcut_x11.cpp
 }
 
 macx {
-CONFIG += static
 SOURCES += mac/qxtglobalshortcut_mac.cpp
 LIBS += -framework Carbon
 }
