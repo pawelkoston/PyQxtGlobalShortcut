@@ -2,12 +2,6 @@
 pygs
 ====
 
-.. image:: http://dl.dropbox.com/u/750959/pygs_strike.png
-
-
-Overview
---------
-
 .. image:: http://img.shields.io/pypi/v/PyGlobalShortcut.png
    :target: https://pypi.python.org/pypi/PyGlobalShortcut
    :alt: Latest PyPI version
@@ -17,8 +11,16 @@ Overview
    :alt: Number of PyPI downloads
 
 .. image:: https://travis-ci.org/Asvel/pygs.svg?branch=master
-   :target: https://travis-ci.org/Asvel/pygs                  
-   :alt: Travis-CI build status    
+   :target: https://travis-ci.org/Asvel/pygs
+   :alt: Travis-CI build status
+
+|
+
+.. image:: http://dl.dropbox.com/u/750959/pygs_strike.png
+
+
+Overview
+--------
 
 pygs provides cross-platform global hotkey / shortcuts for python using PyQt.
 
