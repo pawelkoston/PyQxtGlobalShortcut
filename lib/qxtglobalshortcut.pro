@@ -4,6 +4,7 @@ TARGET = QxtGlobalShortcut
 
 CONFIG += qt release
 QT = core gui
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 QXT = core
 DEFINES += BUILD_QXT_CORE BUILD_QXT_GUI
