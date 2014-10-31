@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import os
 import sys
 
@@ -13,14 +15,12 @@ try:
         from PyQt5.QtGui import QKeySequence
         from PyQt5.QtTest import QTest
 except ImportError:
-    pass
+    print("Test skipped because of corresponding PyQt not found.", file=sys.stderr)
 else:
     from pygs import QxtGlobalShortcut
 
     def test_functional():
         app = QApplication(sys.argv)
-        widget = QWidget()
-        widget.show()
         shortcut = QxtGlobalShortcut()
         shortcut.setShortcut(QKeySequence('Ctrl+Alt+E'))
         shortcut.activated.connect(app.exit)

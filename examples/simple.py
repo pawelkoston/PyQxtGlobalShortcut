@@ -1,13 +1,14 @@
 # !/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import os
 import sys
 
-try:
+if os.environ['QT_SELECT'] == '4':
+    from PyQt4.QtGui import QApplication, QKeySequence
+else:
     from PyQt5.QtWidgets import QApplication
     from PyQt5.QtGui import QKeySequence
-except ImportError:
-    from PyQt4.QtGui import QApplication, QKeySequence
 from pygs import QxtGlobalShortcut
 
 
