@@ -96,7 +96,7 @@ with codecs.open("README.rst", encoding="utf-8") as f:
 
 setup(
     name="PyGlobalShortcut",
-    version="0.2.2",
+    version="0.2.3",
     description="Python bindings to libqxt's QxtGlobalShortcut",
     long_description=long_description,
     url="https://github.com/Asvel/pygs",
