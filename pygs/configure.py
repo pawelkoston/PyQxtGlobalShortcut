@@ -51,6 +51,9 @@ except ImportError:
             qmake_props = dict(x.split(":", 1) for x in qmake_props.splitlines())
 
             qt_version = list(map(int, qmake_props['QT_VERSION'].split('.')))
+            if qt_version[0] != QtCore.PYQT_VERSION >> 16:
+                raise RuntimeError("The main version of Qt and PyQt is different, "
+                                   "try setting environment variable 'QT_SELECT'")
             qt_version = qt_version[0] * 0x10000 + qt_version[1] * 0x100 + qt_version[2]
 
             pkg_config = sipconfig._pkg_config
