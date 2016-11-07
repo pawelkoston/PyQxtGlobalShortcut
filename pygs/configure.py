@@ -76,6 +76,8 @@ except ImportError:
             _default_macros['INCDIR_QT'] = cfg['qt_inc_dir']
             _default_macros['LIBDIR_QT'] = cfg['qt_lib_dir']
             _default_macros['MOC'] = os.path.join(qmake_props['QT_INSTALL_BINS'], "moc")
+            if qt_api == '5':
+                _default_macros['CXXFLAGS'] = _default_macros['CXXFLAGS'] + ' -std=c++11'
 
             sipconfig.Configuration.__init__(self, [cfg])
 
