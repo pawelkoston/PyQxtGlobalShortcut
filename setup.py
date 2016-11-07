@@ -15,6 +15,15 @@ from setuptools import setup, Extension
 from setuptools.command.bdist_egg import NATIVE_EXTENSIONS
 
 
+# determine Qt version to build for
+qt_api = os.environ.get('QT_SELECT', '5')
+
+if qt_api not in ('4', '5'):
+    print("Qt version {} not supported for pygs build".format(qt_api))
+    sys.exit(1)
+
+pygs = "pygs{}".format(qt_api)
+
 def makedirs(name):
     if not os.path.exists(name):
         os.makedirs(name)
@@ -123,7 +132,7 @@ setup(
     keywords="shortcut hotkey QxtGlobalShortcut libqxt qt",
     ext_modules=[
         Extension(
-            name="pygs",
+            name=pygs,
             sources=["pygs/configure.py"],
             language="sip",
         ),

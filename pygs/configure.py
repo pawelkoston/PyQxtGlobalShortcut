@@ -12,7 +12,12 @@ import sipconfig
 
 here = os.path.abspath(os.path.dirname(__file__))
 
-build_file = "pygs.sbf"
+# determine Qt version to build for
+qt_api = os.environ.get('QT_SELECT', '5')
+
+pygs = "pygs{}".format(qt_api)
+
+build_file = "{}.sbf".format(pygs)
 
 
 # exit if up-to-date
@@ -20,13 +25,12 @@ sources = []
 for root, dirs, files in os.walk(here):
     sources += [os.path.join(root, file) for file in files]
 if not newer_group(sources, build_file):
-    print("pygs is up-to-date, skip configure")
+    print("{} is up-to-date, skip configure".format(pygs))
     sys.exit(0)
 
 
-qt_api = os.environ.get('QT_SELECT', '').lower()
 try:
-    if qt_api and qt_api != '4':
+    if qt_api != '4':
         raise ImportError()
     from PyQt4.pyqtconfig import Configuration
 except ImportError:
@@ -84,6 +88,12 @@ except ImportError:
 config = Configuration()
 
 sip_path = os.path.join(here, "sip/pygsmod.sip")
+
+# adjust module name according to Qt version
+sip_mod = open(sip_path).readlines()
+if pygs not in sip_mod[0]:
+    sip_mod[0] = '%Module {}\n'.format(pygs)
+    open(sip_path, 'w').writelines(sip_mod)
 
 # Run SIP to generate the code.
 command = [

@@ -6,24 +6,21 @@ import sys
 
 if os.environ['QT_SELECT'] == '4':
     from PyQt4.QtGui import QApplication, QKeySequence
+    from pygs4 import QxtGlobalShortcut
 else:
     from PyQt5.QtWidgets import QApplication
     from PyQt5.QtGui import QKeySequence
-from pygs import QxtGlobalShortcut
+    from pygs5 import QxtGlobalShortcut
 
 
 SHORTCUT_SHOW = "Ctrl+Alt+S"  # Ctrl maps to Command on Mac OS X
 SHORTCUT_EXIT = "Ctrl+Alt+F"  # again, Ctrl maps to Command on Mac OS X
 
-
-def show_activated():
-    print("Shortcut Activated!")
-
 app = QApplication([])
 
 shortcut_show = QxtGlobalShortcut()
 shortcut_show.setShortcut(QKeySequence(SHORTCUT_SHOW))
-shortcut_show.activated.connect(show_activated)
+shortcut_show.activated.connect(lambda: print("Shortcut Activated!"))
 
 shortcut_exit = QxtGlobalShortcut()
 shortcut_exit.setShortcut(QKeySequence(SHORTCUT_EXIT))
