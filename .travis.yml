@@ -1,27 +1,36 @@
 language: python
+sudo: required
+dist: trusty
 python:
   - "2.7"
-  - "3.2"
+  - "3.4"
 env:
   # We only test interpreters who have native PyQt packages
   # Since travis is still running Ubuntu 12.04, PyQt5 cannot be tested yet
   - TOXENV=py27-pyqt4
-  - TOXENV=py32-pyqt4
+  - TOXENV=py27-pyqt5
+  - TOXENV=py34-pyqt4
+  - TOXENV=py34-pyqt5
 matrix:
   exclude:
     # exclude redundant environments
     - python: "2.7"
-      env: TOXENV=py32-pyqt4
-    - python: "3.2"
+      env: TOXENV=py34-pyqt4
+      env: TOXENV=py34-pyqt5
+    - python: "3.4"
       env: TOXENV=py27-pyqt4
+      env: TOXENV=py27-pyqt5
 virtualenv:
   system_site_packages: true
 before_install:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
 install:
-  - sudo apt-get install -qq python-qt4 python-qt4-dev python-sip python-sip-dev --fix-missing
-  - sudo apt-get install -qq python3-pyqt4 python3-sip python3-sip-dev --fix-missing
+  - sudo apt-get install -qq python-sip python-sip-dev --fix-missing
+  - sudo apt-get install -qq python-qt4 python-qt4-dev --fix-missing
+  - sudo apt-get install -qq python-qt5 python-qt5-dev --fix-missing
+  - sudo apt-get install -qq python3-sip python3-sip-dev --fix-missing
+  - sudo apt-get install -qq python3-pyqt4 python3-pyqt5 --fix-missing
   - pip install --quiet tox;
 script:
   - tox;
