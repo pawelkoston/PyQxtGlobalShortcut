@@ -16,9 +16,11 @@ matrix:
     # exclude redundant environments
     - python: "2.7"
       env: TOXENV=py34-pyqt4
+    - python: "2.7"
       env: TOXENV=py34-pyqt5
     - python: "3.4"
       env: TOXENV=py27-pyqt4
+    - python: "3.4"
       env: TOXENV=py27-pyqt5
 virtualenv:
   system_site_packages: true
