@@ -15,9 +15,9 @@ here = os.path.abspath(os.path.dirname(__file__))
 # determine Qt version to build for
 qt_api = os.environ.get('QT_SELECT', '5')
 
-pygs = "pygs{}".format(qt_api)
+pyqxtgs = "pyqxtgs{}".format(qt_api)
 
-build_file = "{}.sbf".format(pygs)
+build_file = "{}.sbf".format(pyqxtgs)
 
 
 # exit if up-to-date
@@ -25,7 +25,7 @@ sources = []
 for root, dirs, files in os.walk(here):
     sources += [os.path.join(root, file) for file in files]
 if not newer_group(sources, build_file):
-    print("{} is up-to-date, skip configure".format(pygs))
+    print("{} is up-to-date, skip configure".format(pyqxtgs))
     sys.exit(0)
 
 
@@ -86,14 +86,15 @@ except ImportError:
             sipconfig.Configuration.__init__(self, [cfg])
 
 config = Configuration()
-
-sip_path = os.path.join(here, "sip/pygsmod.sip")
+#config.py_module_dir += 'PyQt%s' % qt_api
 
 # adjust module name according to Qt version
-sip_mod = open(sip_path).readlines()
-if pygs not in sip_mod[0]:
-    sip_mod[0] = '%Module {}\n'.format(pygs)
-    open(sip_path, 'w').writelines(sip_mod)
+if qt_api == '4':
+    sip_path = os.path.join(here, "sip/pyqxtgs4mod.sip")
+elif qt_api == '5':
+    sip_path = os.path.join(here, "sip/pyqxtgs5mod.sip")
+else:
+    print('invalid Qt version: %s' % qt_api)
 
 # Run SIP to generate the code.
 command = [
@@ -103,10 +104,13 @@ command = [
     "-I", config.pyqt_sip_dir,
     "-e"
 ] + config.pyqt_sip_flags.split() + [sip_path]
+print(' '.join(command))
 subprocess.check_call(command)
 
 # Create the Makefile.
-makefile = sipconfig.SIPModuleMakefile(config, build_file, qt=["QtCore", "QtGui"])
+
+makefile = sipconfig.SIPModuleMakefile(config, build_file,
+                                       strip = 0, qt=["QtCore", "QtGui"])
 makefile.extra_include_dirs.append(os.path.join(here, "../libqxt/src/core"))
 makefile.extra_include_dirs.append(os.path.join(here, "../libqxt/src/widgets"))
 makefile.extra_lib_dirs.append(os.path.abspath(os.curdir))

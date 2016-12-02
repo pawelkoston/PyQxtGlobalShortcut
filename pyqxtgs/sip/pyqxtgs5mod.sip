@@ -1,4 +1,4 @@
-%Module pygs
+%Module(name=PyQt5.QxtGlobalShortcut, keyword_arguments="Optional")
 
 %Import QtCore/QtCoremod.sip
 %Import QtGui/QtGuimod.sip

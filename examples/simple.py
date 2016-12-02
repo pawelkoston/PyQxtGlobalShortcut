@@ -6,11 +6,11 @@ import sys
 
 if len(sys.argv) > 1 and sys.argv[1] == '4' or os.environ.get('QT_SELECT') == '4':
     from PyQt4.QtGui import QApplication, QKeySequence
-    from pygs4 import QxtGlobalShortcut
+    from PyQt4.QxtGlobalShortcut import QxtGlobalShortcut
 else:
     from PyQt5.QtWidgets import QApplication
     from PyQt5.QtGui import QKeySequence
-    from pygs5 import QxtGlobalShortcut
+    from PyQt5.QxtGlobalShortcut import QxtGlobalShortcut
 
 
 SHORTCUT_SHOW = "Ctrl+Alt+G"  # Ctrl maps to Command on Mac OS X

@@ -1,6 +1,6 @@
 recursive-include examples *
 recursive-include lib *
 recursive-include libqxt *
-recursive-include pygs *
+recursive-include pyqxtgs *
 include LICENSE.txt
 include README.rst

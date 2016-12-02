@@ -19,10 +19,10 @@ from setuptools.command.bdist_egg import NATIVE_EXTENSIONS
 qt_api = os.environ.get('QT_SELECT', '5')
 
 if qt_api not in ('4', '5'):
-    print("Qt version {} not supported for pygs build".format(qt_api))
+    print("Qt version {} not supported for pyqxtgs build".format(qt_api))
     sys.exit(1)
 
-pygs = "pygs{}".format(qt_api)
+pyqxtgs = "pyqxtgs{}".format(qt_api)
 
 def makedirs(name):
     if not os.path.exists(name):
@@ -74,7 +74,8 @@ class build_ext_with_sip(build_ext):
         build_ext.build_extensions(self)
 
         # copy libs to ext dir
-        ext_dir = os.path.dirname(self.get_ext_fullpath("_"))
+        pyqt = 'PyQt%s' % os.environ.get('QT_SELECT', '5')
+        ext_dir = os.path.join(os.path.dirname(self.get_ext_fullpath('_')), pyqt)
         makedirs(ext_dir)
         for filename in os.listdir(self.build_temp):
             if os.path.splitext(filename)[1].lower() in NATIVE_EXTENSIONS:
@@ -104,13 +105,13 @@ with codecs.open("README.rst", encoding="utf-8") as f:
     long_description = f.read()
 
 setup(
-    name="PyGlobalShortcut",
+    name="PyQxtGlobalShortcut",
     version="0.2.3",
     description="Python bindings to libqxt's QxtGlobalShortcut",
     long_description=long_description,
-    url="https://github.com/Asvel/pygs",
-    author="Asvel",
-    author_email="fe.asvel@gmail.com",
+    url="https://github.com/frispete/PyQxtGlobalShortcut",
+    author="Hans-Peter Jansen",
+    author_email="hpj@urpla.net",
     license="GPLv3",
     classifiers=[
         "Development Status :: 4 - Beta",
@@ -128,12 +129,15 @@ setup(
         "Programming Language :: Python :: 3.1",
         "Programming Language :: Python :: 3.2",
         "Programming Language :: Python :: 3.3",
+        "Programming Language :: Python :: 3.4",
+        "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.6",
     ],
-    keywords="shortcut hotkey QxtGlobalShortcut libqxt qt",
+    keywords="shortcut hotkey QxtGlobalShortcut libqxt pyqt qt",
     ext_modules=[
         Extension(
-            name=pygs,
-            sources=["pygs/configure.py"],
+            name=pyqxtgs,
+            sources=["pyqxtgs/configure.py"],
             language="sip",
         ),
     ],
