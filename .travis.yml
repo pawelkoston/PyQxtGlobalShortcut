@@ -29,8 +29,8 @@ before_install:
   - "sh -e /etc/init.d/xvfb start"
 install:
   - sudo apt-get install -qq python-sip python-sip-dev --fix-missing
-  - sudo apt-get install -qq python-qt4 python-qt4-dev --fix-missing
-  - sudo apt-get install -qq python-qt5 python-qt5-dev --fix-missing
+  - sudo apt-get install -qq python-qt4-dev pyqt4-dev-tools --fix-missing
+  - sudo apt-get install -qq pyqt5-dev pyqt5-dev-tools --fix-missing
   - sudo apt-get install -qq python3-sip python3-sip-dev --fix-missing
   - sudo apt-get install -qq python3-pyqt4 python3-pyqt5 --fix-missing
   - pip install --quiet tox;
