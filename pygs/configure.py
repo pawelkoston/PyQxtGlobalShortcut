@@ -100,3 +100,23 @@ makefile.extra_include_dirs.append(os.path.join(here, "../libqxt/src/widgets"))
 makefile.extra_lib_dirs.append(os.path.abspath(os.curdir))
 makefile.extra_libs.append("QxtGlobalShortcut")
 makefile.generate()
+outmake = os.path.join(makefile.dir,"MakeFile")
+if qt_api == '5':
+    print("\n"*5)
+    with open(outmake,"r") as f:
+        qt5fix = f.read()
+
+    print('''
+    Qt5 Fix Applied:
+        On Conda installation for instance the lib are named Qt5 instead of the general Qt originally used in the module.
+    ''')
+    qt5fix = qt5fix.replace("lQtCore","lQt5Core")
+    qt5fix = qt5fix.replace("lQtGui","lQt5Gui")
+    qt5fix = qt5fix.replace("lQtWidgets","lQt5Widgets")
+    qt5fix = qt5fix.replace("lQtPrintSupport","lQt5PrintSupport")
+
+    with open(outmake,"w") as f:
+        f.write(qt5fix)
+
+    print("Success !")
+    print("\n"*5)
