@@ -30,6 +30,7 @@ try:
         raise ImportError()
     from PyQt4.pyqtconfig import Configuration
 except ImportError:
+    qt_api = '5'
     # This global variable will be resolved by sipconfig in a strange way
     _default_macros = sipconfig._default_macros.copy()
 
@@ -99,6 +100,7 @@ makefile.extra_include_dirs.append(os.path.join(here, "../libqxt/src/core"))
 makefile.extra_include_dirs.append(os.path.join(here, "../libqxt/src/widgets"))
 makefile.extra_lib_dirs.append(os.path.abspath(os.curdir))
 makefile.extra_libs.append("QxtGlobalShortcut")
+makefile.extra_cxxflags.append("-std=c++11")
 makefile.generate()
 outmake = os.path.join(makefile.dir,"MakeFile")
 if qt_api == '5':
