@@ -118,7 +118,7 @@ makefile.extra_lib_dirs.append(os.path.abspath(os.curdir))
 makefile.extra_libs.append("QxtGlobalShortcut")
 makefile.extra_cxxflags.append("-std=c++11")
 makefile.generate()
-outmake = os.path.join(makefile.dir,"MakeFile")
+outmake = os.path.join(makefile.dir,"Makefile")
 if qt_api == '5':
     print("\n"*5)
     with open(outmake,"r") as f:
