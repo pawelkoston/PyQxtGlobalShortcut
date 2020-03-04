@@ -28,6 +28,7 @@ if not newer_group(sources, build_file):
     print("{} is up-to-date, skip configure".format(pyqxtgs))
     sys.exit(0)
 
+cfg = {}
 
 try:
     if qt_api != '4':
@@ -37,7 +38,7 @@ except ImportError:
     qt_api = '5'
     # This global variable will be resolved by sipconfig in a strange way
     _default_macros = sipconfig._default_macros.copy()
-
+    print(_default_macros )
     class Configuration(sipconfig.Configuration):
         def __init__(self):
             if qt_api == '4':
@@ -63,7 +64,6 @@ except ImportError:
 
             pkg_config = sipconfig._pkg_config
 
-            cfg = {}
             cfg['pyqt_sip_dir'] = os.path.join(PyQt.__file__, "../sip", PyQt.__name__)
             if not os.path.exists(cfg['pyqt_sip_dir']):
                 cfg['pyqt_sip_dir'] = os.path.join(pkg_config['default_sip_dir'], PyQt.__name__)
@@ -103,7 +103,8 @@ command = [
     "-c", ".",
     "-b", build_file,
     "-I", config.pyqt_sip_dir,
-    "-e"
+    "-I", config.pyqt_sip_dir+'/QtCore/',
+"-e"
 ] + config.pyqt_sip_flags.split() + [sip_path]
 print(' '.join(command))
 subprocess.check_call(command)
@@ -120,7 +121,6 @@ makefile.extra_cxxflags.append("-std=c++11")
 makefile.generate()
 outmake = os.path.join(makefile.dir,"Makefile")
 if qt_api == '5':
-    print("\n"*5)
     with open(outmake,"r") as f:
         qt5fix = f.read()
 
@@ -132,9 +132,9 @@ if qt_api == '5':
     qt5fix = qt5fix.replace("lQtGui","lQt5Gui")
     qt5fix = qt5fix.replace("lQtWidgets","lQt5Widgets")
     qt5fix = qt5fix.replace("lQtPrintSupport","lQt5PrintSupport")
+    qt5fix = qt5fix.replace("$$[QT_INSTALL_LIBS]",cfg.get('qt_lib_dir',''))
 
     with open(outmake,"w") as f:
         f.write(qt5fix)
 
     print("Success !")
-    print("\n"*5)
