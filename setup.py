@@ -75,8 +75,7 @@ class build_ext_with_sip(build_ext):
 
         # copy libs to ext dir
         pyqt = 'PyQt%s' % os.environ.get('QT_SELECT', '5')
-        ext_dir = os.path.join(os.path.dirname(self.get_ext_fullpath('_')), pyqt)
-        makedirs(ext_dir)
+        ext_dir = os.path.join(os.path.dirname(self.get_ext_fullpath('_')),'pyqxtgs')
         for filename in os.listdir(self.build_temp):
             if os.path.splitext(filename)[1].lower() in NATIVE_EXTENSIONS:
                 shutil.copy(os.path.join(self.build_temp, filename), ext_dir)
@@ -106,7 +105,7 @@ with codecs.open("README.rst", encoding="utf-8") as f:
 
 setup(
     name="PyQxtGlobalShortcut",
-    version="0.2.3",
+    version="0.2.4",
     description="Python bindings to libqxt's QxtGlobalShortcut",
     long_description=long_description,
     url="https://github.com/frispete/PyQxtGlobalShortcut",
@@ -133,6 +132,8 @@ setup(
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
     ],
+    packages=['pyqxtgs'],
+    package_data={'pyqxtgs': ['pyqxtgs/PyQxtGlobalShortcut.so']},
     keywords="shortcut hotkey QxtGlobalShortcut libqxt pyqt qt",
     ext_modules=[
         Extension(

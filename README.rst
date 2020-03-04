@@ -22,13 +22,13 @@ PyQxtGlobalShortcut
 Overview
 --------
 
-PyQxtGlobalShortcut provides cross-platform global hotkey / shortcuts for python using PyQt.
+PyQxtGlobalShortcut provides cross-platform global hotkey / shortcuts for python using PyQt5.
 
 PyQxtGlobalShortcut is a wrapper for `libqxt <http://www.libqxt.org/>`_'s `QxtGlobalShortcut <http://doc.libqxt.org/tip/qxtglobalshortcut.html>`_.
 
 My aim is to provide cross-platform support for global hotkeys (shortcuts) in python. Ideally I would like to remove the PyQt and libqxt dependency but that remains a (distant) future goal. I believe it is definitely possible and potentially quite useful though.
 
-This fork support PyQt4 / PyQt5 on Python 2.x / 3.x within a proper namespace.
+This fork support  PyQt5 on Python  >3.6 within a proper namespace.
 
 
 Installation
@@ -39,7 +39,7 @@ Requirements
 
 Minimal for working:
 
-* `PyQt4/PyQt5 <http://www.riverbankcomputing.co.uk/software/pyqt/intro>`_
+* `PyQt5 <http://www.riverbankcomputing.co.uk/software/pyqt/intro>`_
 
 For building from source:
 
@@ -61,10 +61,8 @@ or
 
 ::
 
-    $ setup.py install
+    $ pip install . 
 
-(Target Qt version can be specified by environment variable ``QT_SELECT``,
-valid values are ``4`` or ``5``.)
 
 
 Usage
@@ -104,17 +102,10 @@ tests with Python 2.7 and PyQt4, you would run::
 
 Here is the list of available test environments:
 
-- py27-pyqt4
-- py27-pyqt5
-- py32-pyqt4
 - py32-pyqt5
-- py33-pyqt4
 - py33-pyqt5
-- py34-pyqt4
 - py34-pyqt5
-- py35-pyqt4
 - py35-pyqt5
-- py36-pyqt4
 - py36-pyqt5
 
 

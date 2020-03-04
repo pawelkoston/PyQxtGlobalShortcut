@@ -18,9 +18,9 @@ except ImportError:
     print("Test skipped because of corresponding PyQt not found.", file=sys.stderr)
 else:
     if os.environ['QT_SELECT'] == '4':
-        from PyQt4.QxtGlobalShortcut import QxtGlobalShortcut
+        from pyqxtgs.QxtGlobalShortcut import QxtGlobalShortcut
     else:
-        from PyQt5.QxtGlobalShortcut import QxtGlobalShortcut
+        from pyqxtgs.QxtGlobalShortcut import QxtGlobalShortcut
 
     def test_functional():
         app = QApplication(sys.argv)

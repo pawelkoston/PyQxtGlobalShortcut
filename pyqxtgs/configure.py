@@ -41,15 +41,10 @@ except ImportError:
     print(_default_macros )
     class Configuration(sipconfig.Configuration):
         def __init__(self):
-            if qt_api == '4':
-                import PyQt4 as PyQt
-            elif qt_api == '5':
+            try:
                 import PyQt5 as PyQt
-            else:
-                try:
-                    import PyQt5 as PyQt
-                except ImportError:
-                    import PyQt4 as PyQt
+            except ImportError:
+                import PyQt4 as PyQt
             print("building for {}".format(PyQt.__name__))
             QtCore = import_module('.'.join([PyQt.__name__, 'QtCore']))
 
